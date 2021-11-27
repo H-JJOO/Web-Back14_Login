@@ -3,7 +3,6 @@ package com.koreait.board6.user;
 import com.koreait.board6.MyUtils;
 import com.koreait.board6.dao.UserDAO;
 import com.koreait.board6.model.UserVO;
-import org.apache.catalina.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +15,7 @@ import java.io.IOException;
 public class UserJoinServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        MyUtils.forward(req, res, "/user/join");
+        MyUtils.disForward(req, res, "/user/join");
     }
 
     @Override

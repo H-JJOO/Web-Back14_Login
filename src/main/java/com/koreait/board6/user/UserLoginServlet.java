@@ -15,7 +15,7 @@ import java.io.IOException;
 public class UserLoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        MyUtils.forward(req, res, "/user/login");
+        MyUtils.disForward(req, res, "/user/login");
 
     }
 

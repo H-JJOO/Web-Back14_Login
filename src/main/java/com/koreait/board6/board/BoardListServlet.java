@@ -13,7 +13,7 @@ import java.io.IOException;
 public class BoardListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        MyUtils.forward(req, res, "/board/list");
+        MyUtils.disForward(req, res, "/board/list");
     }
 
     @Override
