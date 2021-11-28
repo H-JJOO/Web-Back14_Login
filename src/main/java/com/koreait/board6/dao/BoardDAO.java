@@ -1,6 +1,7 @@
 package com.koreait.board6.dao;
 
 import com.koreait.board6.DbUtils;
+import com.koreait.board6.model.BoardParamVO;
 import com.koreait.board6.model.BoardVO;
 
 import java.sql.Connection;
@@ -31,7 +32,7 @@ public class BoardDAO {
         return 0;
     }
 
-    public static List<BoardVO> selBoardList() {
+    public static List<BoardVO> selBoardList(BoardParamVO param) {
         List<BoardVO> list = new ArrayList();
 
         Connection con = null;
@@ -146,6 +147,78 @@ public class BoardDAO {
             e.printStackTrace();
         } finally {
             DbUtils.close(con, ps, rs);
+        }
+        return 0;
+    }
+
+    public static int selMaxPage(BoardParamVO param) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = " SELECT CEIL(COUNT(*) / ? ) " +
+                    " FROM t_board ";
+
+        try {
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, param.getRecordCnt());
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.close(con, ps, rs);
+        }
+        return 0;
+    }
+
+    public static int modBoard(BoardVO param) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = " UPDATE t_board " +
+                    " SET title = ?," +
+                    " ctnt = ?, " +
+                    " mdt = NOW() " +
+                    " WHERE iboard = ? " +
+                    " AND writer = ? ";
+
+        try {
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, param.getTitle());
+            ps.setString(2, param.getCtnt());
+            ps.setInt(3, param.getIboard());
+            ps.setInt(4, param.getWriter());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.close(con, ps);
+        }
+        return 0;
+    }
+
+    public static int delBoard(BoardVO param) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = " DELETE FROM t_board " +
+                    " WHERE iboard = ? " +
+                    "AND writer = ? ";
+
+        try {
+            con = DbUtils.getCon();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, param.getIboard());
+            ps.setInt(2, param.getWriter());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            DbUtils.close(con, ps);
         }
         return 0;
     }

@@ -11,9 +11,13 @@
             height: 100%;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
         }
+        .err {
+            color: red;
+        }
     </style>
 </head>
 <body class="position">
+    <div class="err">${err}</div>
     <h1>로그인</h1>
     <form action="/user/login" method="post">
         <div>

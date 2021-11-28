@@ -18,8 +18,8 @@
     <h1>디테일</h1>
     <%if (loginUser != null && loginUser.getIuser() == vo.getWriter()) { %>
     <div>
-        <a href="/board/del?iboard=${requestScope.data.iboard}"></a><input type="button" value="삭제">
-        <a href="/board/mod?iboard=${requestScope.data.iboard}"></a><input type="button" value="수정">
+        <a href="/board/del?iboard=<%=vo.getIboard()%>"><input type="button" value="삭제"></a>
+        <a href="/board/mod?iboard=<%=vo.getIboard()%>"><input type="button" value="수정"></a>
     </div>
     <% } %>
     <div>번호 : ${requestScope.data.iboard} </div>

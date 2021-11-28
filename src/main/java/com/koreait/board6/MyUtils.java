@@ -32,6 +32,10 @@ public class MyUtils {
         return intVal;
     }
 
+    public static int getParameterInt(HttpServletRequest req, String key, int defVal) {
+        return parseStringToInt(req.getParameter(key), defVal);
+    }
+
     public static UserVO getLoginUser(HttpServletRequest req) {
         HttpSession session = req.getSession();
         return (UserVO)session.getAttribute("loginUser");
