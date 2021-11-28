@@ -7,7 +7,15 @@ public class BoardVO {
     private int writer;
     private String rdt;
     private String mdt;
+    private String writerNm;
 
+    public String getWriterNm() {
+        return writerNm;
+    }
+
+    public void setWriterNm(String writerNm) {
+        this.writerNm = writerNm;
+    }
 
     public int getIboard() {
         return iboard;
