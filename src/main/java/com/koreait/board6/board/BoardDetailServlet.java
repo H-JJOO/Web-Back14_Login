@@ -20,6 +20,7 @@ public class BoardDetailServlet extends HttpServlet {
         BoardVO param = new BoardVO();
 
         param.setIboard(iboard);
+        param.setWriter(MyUtils.getLoginUserIboard(req));
 
         BoardVO data = BoardDAO.selBoardDetail(param);
 

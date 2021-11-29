@@ -42,11 +42,14 @@ public class BoardDAO {
                     " FROM t_board A " +
                     " INNER JOIN t_user B " +
                     " ON A.writer = B.iuser " +
-                    " ORDER BY iboard DESC ";
+                    " ORDER BY iboard DESC " +
+                    " LIMIT ?, ?" ;
 
         try {
             con  = DbUtils.getCon();
             ps = con.prepareStatement(sql);
+            ps.setInt(1, param.getsIdx());
+            ps.setInt(2, param.getRecordCnt());
             rs = ps.executeQuery();
 
             while (rs.next()) {

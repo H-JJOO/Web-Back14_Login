@@ -33,7 +33,10 @@
     </div>
     <% } %>
     <h1>리스트</h1>
+    <% if (loginUser != null) { %>
     <div><a href="/board/write"><input type="button" value="글쓰기"></a></div>
+    <% } %>
+
     <table border="1">
         <tr>
             <th>번호</th>
